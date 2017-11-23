@@ -1,0 +1,222 @@
+|===============================================================================|
+|                                                                               |
+|   Project:        TalkMe messenger                                            |
+|   Start date:     01.10.2017                                                  |
+|   Developer:      Oleksandr Viitiv                                            |
+|   Last versions:  0.8[beta] 0[release] (01.11.17)                             |
+|   Last modif.:    07.11.2017 alexviytiv                                       |
+|                                                                               |
+|===============================================================================|
+
+    __________________________________________________________________________
+
+    Content
+
+    1. General description
+        1.1. What is that?
+        1.2. Introduction.
+        1.3. Licensing.
+        1.4. Versions.
+        1.5. Technical aspects.
+        1.6. Coding style.
+
+    2. Architecture
+        2.1. Project structure.
+        2.2. Modules.
+        2.3. Assumptions.
+
+    3. Low-Level Design
+        3.1. Files structure.
+        3.2. Functions.
+        3.3. Algorithms.
+        3.4. Communication.
+
+    4. Testing
+        4.1. How to test?
+        4.2. Test cases.
+        4.3. Tesing results.
+
+    5. Code changes
+        5.1. List of issues.
+        5.2. History of changes.
+    __________________________________________________________________________
+
+    1. General description
+
+    1.1. What is that?
+        This document is HLD for TalkMe messenger. The main goal of this docu-
+        ment describe new software product. Document is divided into several
+        logically grouped blocks, which describe different aspects of new
+        product.
+
+    1.2. Introduction.
+        Product, described here, is a computer software, that belongs to the
+        class of social software. Main goal of it is to enable users to commu-
+        nicate with each other via text messages, or other media resources.
+
+    1.3. Licensing.
+        All rights for this product, source code or any other resources, that
+        belongs to this software, are property of Oleksandr Viitiv.
+
+    1.4. Versions.
+        Project will be developed continiously. So, to enable versions
+        classification, there are several types of product versions :
+         - draft   : version is not adequatly tested, contain cosmetic changes.
+         - beta    : version was basically tested, contain minor changes.
+         - release : version was thoroughly tested, contain major changes.
+         - patch   : version that used to fix bugs in previous versions.
+
+    1.5. Technical aspects.
+        This software require several program resources, which was used in
+        development and was chosen as base for this product. Resources,
+        required by this software are listed below:
+            - Linux operating system (tested on Ubuntu 16.10)
+            - Gtk+ 2.0 - graphical library
+
+    1.6. Coding style.
+        TODO:
+
+    __________________________________________________________________________
+
+    2. Architecture
+
+    2.1. Project structure.
+        Project is divided into two major parts :
+            - client
+            - server
+
+        Client side perform next set of functions :
+            - process actions that income from GUI
+            - provide communication with server
+            - output information received from server
+
+        Server side perform such functions :
+            - receive user packets
+            - provide information sharing between users
+            - interconnect users, connected to server
+
+    ``````````````````````````````````````````````````````````````````````````
+    Client can communicate with server from different network locations. Diag-
+    rams below show different cases of network locations of both elements.
+    ==========================================================================
+
+
+    |========================================================================|
+    | Diagram of client server communication in PAN :                        |
+    |                                                                        |
+    | ip: 192.168.0.102:4547            ip: 192.168.0.102                    |
+    | ._______________.                 ._______________.                    |
+    | |    server     |>---------------<| client #1     |                    |
+    | *""[]"""""""[]""*                 *"""""""""""""""*                    |
+    |     |        |              ip: 192.168.0.102                          |
+    |     |        |              ._______________.                          |
+    |     |        \-------------<| client #2     |                          |
+    |     |                       *"""""""""""""""*                          |
+    |     |                ip: 192.168.0.102                                 |
+    |     |                ._______________.                                 |
+    |     \---------------<| client #3     |                                 |
+    |                      *"""""""""""""""*                                 |
+    |                                                                        |
+    | (!) Note: all clients can be at one machine.                           |
+    |========================================================================|
+
+
+    |========================================================================|
+    | Diagram of client server communication in LAN :                        |
+    |                                                                        |
+    | ip: 192.168.0.103:4547            ip: 192.168.0.102                    |
+    | ._______________.                 ._______________.                    |
+    | |    server     |>---------------<| client #1     |                    |
+    | *""[]"""""""[]""*                 *"""""""""""""""*                    |
+    |     |        |              ip: 192.168.0.103                          |
+    |     |        |              ._______________.                          |
+    |     |        \-------------<| client #2     |                          |
+    |     |                       *"""""""""""""""*                          |
+    |     |                ip: 192.168.0.106                                 |
+    |     |                ._______________.                                 |
+    |     \---------------<| client #3     |                                 |
+    |                      *"""""""""""""""*                                 |
+    |                                                                        |
+    | (!) Note: client host can be server and client simultaneously.         |
+    |========================================================================|
+
+
+    |========================================================================|
+    | Diagram of client server communication in WAN :                        |
+    |                                                                        |
+    | ip: 112.108.22.98:4547            ip: 176.59.13.49                     |
+    | ._______________.                 ._______________.                    |
+    | |    server     |>---------------<| client #1     |                    |
+    | *""[]"""""""[]""*                 *"""""""""""""""*                    |
+    |     |        |              ip: 94.132.91.231                          |
+    |     |        |              ._______________.                          |
+    |     |        \-------------<| client #2     |                          |
+    |     |                       *"""""""""""""""*                          |
+    |     |                ip: 74.192.31.178                                 |
+    |     |                ._______________.                                 |
+    |     \---------------<| client #3     |                                 |
+    |                      *"""""""""""""""*                                 |
+    |                                                                        |
+    | (!) Note: all elements can be in different networks.                   |
+    |========================================================================|
+
+    2.2. Modules
+        Program contain three major modules. Thay are:
+            - login
+            - client
+            - server
+        TODO:
+
+    2.3. Assumptions.
+        TODO:
+
+    __________________________________________________________________________
+    3. Low-Level Design
+
+    3.1. Files structure.
+        TODO:
+    3.2. Functions.
+        TODO:
+    3.3. Algorithms.
+        TODO:
+    3.4. Communication.
+        TODO:
+    __________________________________________________________________________
+    4. Testing
+
+    4.1. How to test?
+        TODO:
+    4.2. Test cases.
+        TODO:
+    4.3. Tesing results.
+        TODO:
+    __________________________________________________________________________
+
+    5. Code changes
+
+    5.1. List of issues.
+
+        Version 0.8 [initial] :
+            - Architecture creation;
+            - Initial functionality and interface;
+            - Fix bugs related with info update;
+
+        Version 0.9 [beta] :
+            - Restructurize client-server communication;
+                I.   update client info, only when some server event happened.
+                II.  remove client background update.
+            - Remove "Refresh receivers" button;
+            - Update list of receivers automatically, exclude "offline" users;
+            - Make "autoclean" button to perform cleaning after some time;
+            - Implement files transfer;
+            - Improve server connected clients view;
+
+        Version 1.0 [release] :
+            - Refactoring;
+            - Restructurization of code;
+
+    5.2. History of changes.
+        TODO:
+
+
+
