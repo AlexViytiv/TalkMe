@@ -40,7 +40,6 @@ bool ip_found_flag;
 
 struct lan_ip_segment {
     char LAN_ADDRESS[INET_ADDRSTRLEN];
-    char LAN_MASK[INET_ADDRSTRLEN];
-    
-}
+    char LAN_MASK[INET_ADDRSTRLEN];  
+};
 

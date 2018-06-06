@@ -2,7 +2,7 @@
 
 void * talkme_scan_lan_ip_segment(void *args)
 {
-
+	return NULL;
 }
 
 /* function to check who is a server */
@@ -219,7 +219,7 @@ gboolean talkme_entry_name_event (GtkWidget *widget, GdkEvent *event, gpointer d
 	gtk_text_buffer_get_end_iter  (tbfUName, &end);
     strcpy(lgData.name, (char*)gtk_text_buffer_get_text(tbfUName, &start, &end, FALSE));
 
-	if (!checkName(lgData.name)) {
+	if (!talkme_check_name(lgData.name)) {
 		strcpy(lgData.name, LastName);
 	} else {
 		return FALSE;
@@ -333,6 +333,8 @@ OP_STATUS draw_gui(int argc, char *argv[])
 	g_signal_connect(chbtnLAN, "released"    , G_CALLBACK(talkme_search_event) , NULL);
 	g_signal_connect(btnLogin, "released"    , G_CALLBACK(talkme_login_event) , argv);
 	g_signal_connect(window  , "delete-event", G_CALLBACK(talkme_delete_event), NULL);
+
+	return OP_OK;
 }
 
 int main (int argc, char* argv[])

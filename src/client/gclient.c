@@ -9,10 +9,10 @@ bool client_apply_refresh_answer(char *answer)
 	char *attr[3] = {0};
 	bool attrMgr[3] = {0};
 	char *TempId  = malloc(20);
-    char *newUser = malloc(NAME_SIZE + STATUS_SIZE + 50);
+    	char *newUser = malloc(NAME_SIZE + STATUS_SIZE + 50);
 	sprintf(newUser, "\b");
 
-    gdk_threads_enter();
+    	gdk_threads_enter();
 	//MSG_DBG("[Client] | Answer : \'%s\'.\n", answer);
 
 	attr[0] = malloc(10);
@@ -24,7 +24,7 @@ bool client_apply_refresh_answer(char *answer)
 	}
 
 	g_list_free(lstReceiver);
-    lstReceiver = NULL;
+	lstReceiver = NULL;
 	lstReceiver = g_list_append(lstReceiver, "None");
 	lstReceiver = g_list_append(lstReceiver, "All");
 
